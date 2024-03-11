@@ -7,14 +7,17 @@ class mimir::install {
   $log_group         = $::mimir::log_group
   $log_owner         = $::mimir::log_owner
   $log_to_file       = $::mimir::log_to_file
+  $manage_package    = $::mimir::manage_package
   $manage_user       = $::mimir::manage_user
   $package_ensure    = $::mimir::package_ensure
   $user_extra_groups = $::mimir::user_extra_groups
   $user_home         = $::mimir::user_home
   $user_shell        = $::mimir::user_shell
 
-  package { 'mimir':
-    ensure => $package_ensure,
+  if $manage_package {
+    package { 'mimir':
+      ensure => $package_ensure,
+    }
   }
 
   if $manage_user {

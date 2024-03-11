@@ -4,6 +4,7 @@
 # For a deep dive in mimir configuration see https://grafana.com/docs/mimir/latest/
 #
 # @param package_ensure Mimir version under the form X.X.X
+# @param manage_package Boolean to specify if module should manage mimir package
 # @param manage_user Boolean to specify if module should manage mimir user
 # @param user_home Home directory for the managed user
 # @param user_shell Binary to use as shell for managed user
@@ -30,6 +31,7 @@ class mimir (
     # Installation related parameters
     ##
     String    $package_ensure    = 'present',
+    Boolean   $manage_package    = false,
     Boolean   $manage_user       = false,
     String    $user_home         = '/var/lib/mimir',
     String    $user_shell        = '/sbin/nologin',
